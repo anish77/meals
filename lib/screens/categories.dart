@@ -28,8 +28,8 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     _animationControlle = AnimationController(
       vsync: this,
       duration: const Duration(microseconds: 300),
-      //owerBound: 0, -- are by default
-      //upperBound: 1, -- are by default
+      lowerBound: 0, //-- are by default
+      upperBound: 1, //-- are by default
     );
 
     _animationControlle.forward();
@@ -82,9 +82,18 @@ class _CategoriesScreenState extends State<CategoriesScreen>
             ),
         ],
       ),
-      builder: (context, child) => Padding(
-          padding: EdgeInsets.only(top: 100 - _animationControlle.value * 100),
-          child: child),
+      builder: (context, child) => SlideTransition(
+        position: Tween(
+          begin: Offset(0, 0.3),
+          end: Offset(0, 0),
+        ).animate(
+          CurvedAnimation(
+            parent: _animationControlle,
+            curve: Curves.easeInOut,
+          ),
+        ),
+        child: child,
+      ),
     );
   }
 }
