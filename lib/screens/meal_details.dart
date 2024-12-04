@@ -55,11 +55,14 @@ class MealDetailsScreen extends ConsumerWidget {
         child: Column(
           children: [
             //image
-            Image.network(
-              (meal.imageUrl),
-              height: 300,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            Hero(
+              tag: meal.id,
+              child: Image.network(
+                (meal.imageUrl),
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
             //Ingredients
             const SizedBox(height: 14),
